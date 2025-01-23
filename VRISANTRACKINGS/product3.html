@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VRISANS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #fff;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            color: #007bff;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            margin: 0 auto;
+            background-color: #222;
+            color: #fff;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Updated image container styling */
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            border-radius: 15px 15px 15px 15px;
+        }
+
+        .card-content {
+            padding: 16px;
+        }
+
+        .company-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            margin: 0 0 8px;
+            color: #fff;
+        }
+
+        .card-details {
+            font-size: 1em;
+            text-align: justify;
+            color: #bbb;
+            margin-bottom: 12px;
+        }
+
+        .card-features {
+            font-size: 1.1em;
+            margin-top: 15px;
+            color: #bbb;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .card-features h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .card-features ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card-features ul li {
+            margin: 8px 0;
+        }
+
+        .card-info {
+            text-align: justify;
+            font-size: 0.9em;
+            color: #bbb;
+            margin-bottom: 12px;
+        }
+
+        .card-info h3 {
+            font-size: 1.5em;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .card-stars {
+            color: #fff;
+            font-size: 22px;
+        }
+
+        .card-stars i {
+            margin-right: 2px;
+        }
+
+        .card-price {
+            font-size: 1.3em;
+            color: #aaa;
+            margin-bottom: 16px;
+        }
+
+        .card button,
+        .card .add-to-cart {
+            display: inline-block;
+            padding: 10px 16px;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover,
+        .card .add-to-cart:hover {
+            background-color: #ddd;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+        }
+
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        footer .links a {
+            font-size: 0.9em;
+        }
+
+        footer .social-icons {
+            margin-top: 10px;
+        }
+
+        footer .social-icons a {
+            margin: 0 10px;
+            font-size: 1.2em;
+            color: #fff;
+        }
+
+        footer .social-icons a:hover {
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">VRISAN TRACKINGS</div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li>
+                <a href="cart.html">
+                    Cart <span id="cartCount"
+                        style="background: red; color: white; padding: 3px 8px; border-radius: 50%; font-size: 0.8em;">0</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="cards-container" id="cardsContainer">
+        <!-- Product cards will be dynamically generated here -->
+        <script>
+            const products = [
+                {
+                    id: 3,
+                    title: "VT-140",
+                    details: "VT-140 would be the best option for government fleet, courier delivery services or car rental companies.",
+                    features: [
+                        "AIS 140 Certified",
+                        "Support GPS, IRNSS, GLONASS",
+                        "Embedded e-SIM"],
+                    info: "AIS140 approved GPS tracker VT-140 allows you to stay in control and track your fleet in real-time. It gathers data from your moving vehicle to provide information concerning its location, speed, distance travelled, door status, etc. During an emergency case, the panic button enables the driver to trigger alert calling not supported. VT-140 would be the best option for government fleet, courier delivery services or car rental companies.",
+                    price: "₹4500",
+                    image: "/images/vt-140.jpg",
+                    stars: 5
+                },
+            ];
+
+            function generateCards() {
+                const container = document.getElementById('cardsContainer');
+                products.forEach((product, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div class="company-name">Vrisan Trackings</div>
+                        <img src="${product.image}" alt="${product.title}">
+                        <div class="card-content">
+                            <h2 class="card-title">${product.title}</h2>
+                            <p class="card-details">${product.details}</p>
+                            <div class="card-features">
+                                <h3>Features</h3>
+                                <ul>
+                                    ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="card-info">
+                                <h3>Product Information</h3>
+                                <p>${product.info}</p>
+                            </div>
+                            <p class="card-stars">${'★'.repeat(product.stars)}${'☆'.repeat(5 - product.stars)}</p>
+                            <p class="card-price">${product.price}</p>
+                            <button onclick="redirectToPayment(${index})">Buy Now</button>
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            function redirectToPayment(index) {
+                const product = products[index];
+                localStorage.setItem('cart', JSON.stringify([product])); // Set only the selected product in the cart
+                localStorage.setItem('paymentType', 'product'); // Set the paymentType to 'product' to indicate this is a product purchase, not a subscription
+                window.location.href = 'payment.html'; // Redirect to payment page
+            }
+
+            function addToCart(productId) {
+                const product = products.find(p => p.id === productId);
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                // alert(`${product.title} has been added to your cart!`);
+            }
+
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartCountElement = document.getElementById('cartCount');
+                cartCountElement.textContent = cart.length; // Update the count to reflect the number of items in the cart
+            }
+
+            // Call the function on page load
+            updateCartCount();
+
+            generateCards();
+        </script>
+    </div>
+
+    <footer>
+        <div class="links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Support</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 <a href="https://krystalnestitsolutionsprivatelimited.co.in/">KrystalNest IT Solutions</a>. All
+            rights reserved.</p>
+    </footer>
+</body>
+
+</html>

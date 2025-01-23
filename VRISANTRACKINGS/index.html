@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrisan Trackings - Login & Signup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #111;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+        }
+    
+        .container .header i {
+            margin-right: 8px;
+            color: #fff;
+        }
+
+        .form-container {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            color: #fff;
+        }
+
+        .form-container form {
+            width: 100%;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container input {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            font-size: 1em;
+            background: #222;
+            color: #fff;
+        }
+
+        .form-container input:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+        .form-container button {
+            padding: 12px;
+            background-color: #444;
+            border: none;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #666;
+        }
+
+        .form-container .toggle-link {
+            margin-top: 10px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #aaa;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .form-container .toggle-link:hover {
+            color: #fff;
+        }
+
+        /* Real-time validation styles */
+        .form-container .error {
+            font-size: 0.85em;
+            color: #ff4d4d;
+            margin: -10px 0 10px;
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #111;
+            font-size: 0.9em;
+            border-top: 1px solid #333;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fa fa-map-marker"></i> Vrisan Trackings</h1>
+        </div>
+
+        <!-- Login Form -->
+        <div class="form-container" id="loginForm">
+            <h2>Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="email" id="loginEmail" placeholder="Email Address" required>
+                <p class="error" id="loginEmailError">Please enter a valid email address.</p>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <p class="error" id="loginPasswordError">Password must be at least 6 characters long.</p>
+                <button type="submit">Login</button>
+                <a class="toggle-link" onclick="toggleForm('signup')">Don't have an account? Signup</a>
+            </form>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="form-container" id="signupForm" style="display: none;">
+            <h2>Create an Account</h2>
+            <form onsubmit="handleSignup(event)">
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <p class="error" id="signupNameError">Name cannot be empty.</p>
+                <input type="email" id="signupEmail" placeholder="Email Address" required>
+                <p class="error" id="signupEmailError">Please enter a valid email address.</p>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <p class="error" id="signupPasswordError">Password must be at least 6 characters long.</p>
+                <button type="submit">Signup</button>
+                <a class="toggle-link" onclick="toggleForm('login')">Already have an account? Login</a>
+            </form>
+        </div>
+
+        <div class="footer">
+            &copy; 2025 krystalnest IT Solutions Pvt. Ltd. All Rights Reserved.
+        </div>
+    </div>
+
+    <script>
+        // Toggle between Login and Signup forms
+        function toggleForm(type) {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+
+            if (type === 'login') {
+                loginForm.style.display = 'flex';
+                signupForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'flex';
+            }
+        }
+
+        // Real-time validation for Login
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('loginEmail');
+            const password = document.getElementById('loginPassword');
+            const emailError = document.getElementById('loginEmailError');
+            const passwordError = document.getElementById('loginPasswordError');
+
+            let valid = true;
+
+            if (!email.value.includes('@')) {
+                emailError.style.display = 'block';
+                valid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            if (password.value.length < 6) {
+                passwordError.style.display = 'block';
+                valid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+
+            if (valid) {
+                // alert(`Logged in as: ${email.value}`);
+                window.location.href ="/home.html";
+                // Backend API call for authentication
+            }
+        }
+
+        // Real-time validation for Signup
+        function handleSignup(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('signupName');
+            const email = document.getElementById('signupEmail');
+            const password = document.getElementById('signupPassword');
+            const nameError = document.getElementById('signupNameError');
+            const emailError = document.getElementById('signupEmailError');
+            const passwordError = document.getElementById('signupPasswordError');
+
+            let valid = true;
+
+            if (name.value.trim() === '') {
+                nameError.style.display = 'block';
+                valid = false;
+            } else {
+                nameError.style.display = 'none';
+            }
+
+            if (!email.value.includes('@')) {
+                emailError.style.display = 'block';
+                valid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            if (password.value.length < 6) {
+                passwordError.style.display = 'block';
+                valid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+
+            if (valid) {
+                // alert(`Account created for: ${name.value}`);
+                window.location.href = "/home.html";
+                // Backend API call for signup
+            }
+        }
+    </script>
+</body>
+
+</html>
