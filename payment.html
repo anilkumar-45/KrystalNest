@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Payment Page - Vrisan Trackings</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f4f4f4;
+        }
+
+        .payment-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #1c1c1c;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .payment-details {
+            margin-bottom: 20px;
+        }
+
+        .payment-details p {
+            font-size: 1.1em;
+            margin: 10px 0;
+            color: #d3d3d3;
+        }
+
+        .payment-total {
+            font-size: 1.4em;
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .payment-methods {
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .payment-methods label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        .payment-methods input {
+            margin-right: 10px;
+        }
+
+        .pay-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.3em;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .pay-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .pay-button:active {
+            background-color: #003366;
+            transform: scale(1);
+        }
+
+        .icon {
+            margin-right: 8px;
+        }
+
+        .cart-details,
+        .plan-details,
+        .product-details {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payment-container">
+        <h1><i class="fa fa-credit-card icon"></i> Vrisan Trackings Payment</h1>
+
+        <!-- Cart Details Section -->
+        <div class="payment-details cart-details" id="cartDetails">
+            <h2>Products in Cart:</h2>
+            <p id="paymentItems"></p>
+            <p class="payment-total" id="paymentTotal"></p>
+        </div>
+
+        <!-- Subscription Plan Details Section -->
+        <div class="payment-details plan-details" id="planDetails">
+            <h2>Subscription Plan:</h2>
+            <p id="planName"></p>
+            <p id="planDescription"></p>
+            <p class="payment-total" id="paymentPlanTotal"></p>
+        </div>
+
+        <!-- Product Details Section (for single product purchases) -->
+        <div class="payment-details product-details" id="productDetails">
+            <h2>Product Payment:</h2>
+            <p id="productName"></p>
+            <p id="productPrice"></p>
+            <p class="payment-total" id="paymentProductTotal"></p>
+        </div>
+
+        <div class="payment-methods">
+            <h2>Select Payment Method:</h2>
+            <label>
+                <input type="radio" name="paymentMethod" value="Credit Card" checked>
+                Credit Card
+            </label>
+            <label>
+                <input type="radio" name="paymentMethod" value="Debit Card">
+                Debit Card
+            </label>
+            <label>
+                <input type="radio" name="paymentMethod" value="UPI">
+                UPI
+            </label>
+            <label>
+                <input type="radio" name="paymentMethod" value="Net Banking">
+                Net Banking
+            </label>
+        </div>
+        <button class="pay-button" onclick="makePayment()">Make Payment</button>
+    </div>
+
+    <script>
+        function loadPaymentDetails() {
+            // Get the payment type (subscription, cart, or product) from localStorage
+            const paymentType = localStorage.getItem('paymentType');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const selectedPlan = JSON.parse(localStorage.getItem('selectedPlan'));
+
+            const cartDetails = document.getElementById('cartDetails');
+            const planDetails = document.getElementById('planDetails');
+            const productDetails = document.getElementById('productDetails'); // New section for product details
+            const paymentItemsContainer = document.getElementById('paymentItems');
+            const paymentTotalContainer = document.getElementById('paymentTotal');
+            const paymentPlanTotalContainer = document.getElementById('paymentPlanTotal');
+            const planNameContainer = document.getElementById('planName');
+            const planDescriptionContainer = document.getElementById('planDescription');
+            const productNameContainer = document.getElementById('productName');
+            const productPriceContainer = document.getElementById('productPrice');
+            const paymentProductTotalContainer = document.getElementById('paymentProductTotal');
+
+            // Hide all sections by default
+            cartDetails.style.display = 'none';
+            planDetails.style.display = 'none';
+            productDetails.style.display = 'none'; // Hide product details by default
+
+            // Show the relevant section based on payment type
+            if (paymentType === 'cart' && cart.length > 0) {
+                // Show cart details
+                cartDetails.style.display = 'block';
+                paymentItemsContainer.innerHTML = cart.map(item => `${item.title} - ${item.price}`).join('<br>');
+
+                const total = cart.reduce((sum, item) => sum + parseFloat(item.price.replace('₹', '')), 0).toFixed(2);
+                paymentTotalContainer.innerHTML = `Total: ₹${total}`;
+            } else if (paymentType === 'plan' && selectedPlan) {
+                // Show subscription plan details
+                planDetails.style.display = 'block';
+                planNameContainer.innerText = selectedPlan.name;
+                planDescriptionContainer.innerText = selectedPlan.description;
+                paymentPlanTotalContainer.innerText = `Total: ${selectedPlan.price}/month`;
+            } else if (paymentType === 'product' && cart.length === 1) {
+                // Show product details if it's a single product purchase
+                productDetails.style.display = 'block';
+                const product = cart[0]; // Only one product will be in the cart
+                productNameContainer.innerText = product.title;
+                productPriceContainer.innerText = `Price: ${product.price}`;
+                paymentProductTotalContainer.innerHTML = `Total: ${product.price}`;
+                paymentItemsContainer.innerHTML = `${product.title} - ${product.price}`;
+                paymentTotalContainer.innerHTML = `Total: ${product.price}`;
+            } else {
+                alert('No valid payment source detected!');
+                window.location.href = 'index.html'; // Redirect to index if no valid payment type
+            }
+        }
+
+        function makePayment() {
+            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            alert(`Payment Successful using ${selectedMethod}. Thank you for your purchase!`);
+
+            // Clear the cart, selected plan, and payment type after payment
+            localStorage.removeItem('cart');
+            localStorage.removeItem('selectedPlan');
+            localStorage.removeItem('paymentType'); // Remove payment type
+            window.location.href = 'index.html'; // Redirect to home page
+        }
+
+        loadPaymentDetails(); // Load payment details when the page loads
+
+    </script>
+</body>
+
+</html>
