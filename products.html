@@ -258,20 +258,21 @@
     </footer>
 
     <script>
-        const products = [
-            { id: 1, title: "VT-LITE", details: "The VT LITE provides crucial visibility into the status of the vehicle and the behaviour of its driver.", features: "Driving Behavior Analysis, Remote Cut-off(Fuel/Power), Ignition Detection", price: "₹4500", image: "/images/vt-lite.jpg", stars: 5 },
-            { id: 2, title: "VT-PRO", details: "Multifunctional Vehicle Tracker with solid performance and reasonable price, allowing you to constantly keep an eye on your fleet.", features: "GPS & LBS Positioning, IP66 Dust & Water Resistance, Emergency SOS Button", price: "₹4500", image: "/images/vt-pro.webp", stars: 5 },
-            { id: 3, title: "VT-140", details: "VT-140 would be the best option for government fleet, courier delivery services or car rental companies.", features: "AIS 140 Certified, Support GPS, IRNSS, GLONASS, Embedded e-SIM", price: "₹4500", image: "/images/vt-140.jpg", stars: 5 },
-            { id: 4, title: "VT-CHARGER", details: "The tracker is a discreet car GPS tracker cleverly integrated into a lighter style USB charger.", features: "Embedded Microphone, Panic Button, Over-speed Alert", price: "₹4500", image: "/images/vt-charger.jpg", stars: 5 },
-            { id: 5, title: "VT-OBD", details: "Plug & Play OBD Tracker.", features: "Compact Size, Unplug Alert, GPS & LBS Positioning.", price: "₹4500", image: "/images/vt-obd.jpg", stars: 5 },
-            { id: 6, title: "VT-MAGNETIC(VT)", details: "Long-standby magnetic Traker.", features: "GPS & WiFi & LBS Positioning, Remote Listen-in, IPX5 Water Resistance", price: "₹4500", image: "/images/vt-magnetic.webp", stars: 5 },
-            { id: 7, title: "VT-MAGNETIC LITE (VT 2)", details: "Long-standby magnetic Tracker.", features: "GPS & WiFi & LBS Positioning, 6000mAh Rechargeable Battery, Remote Listen-in", price: "₹4500", image: "/images/vt-magnetic-lite.jpg", stars: 5 },
-            { id: 8, title: "VT-MAGNETIC PRO (VT 3)", details: "Long-standby magnetic Tracker.", features: "GPS & WiFi & LBS Positioning, Temper Alert, Strong Magnetic Base", price: "₹4500", image: "/images/vt-magnetic-pro.jpg", stars: 5 },
-            { id: 9, title: "VT-MINI", details: "Mini Personal Tracker.", features: "Geo-fence, Compact Size, Two-way Communication", price: "₹4500", image: "/images/vt-mini.AVIF", stars: 5 },
-            { id: 10, title: "VT-4", details: "Intelligent Personal Tracker.", features: "Intelligent Positioning Modes, Extra-Long Standby, GPS & WiFi & LBS Positioning", price: "₹4500", image: "/images/vt-4.jpg", stars: 5 },
-            { id: 11, title: "VT-6", details: "Mini Personal Tracker.", features: "GPS & WiFi & LBS Positioning, Low Battery Alert, Panic Button", price: "₹4500", image: "/images/vt-6.jpg", stars: 5 },
-            { id: 12, title: "VT-B1", details: "Solar GPS Tracker for bicycles.", features: "Quick & Simple Unlocking, Solar Powered, Rugged and Durable Design", price: "₹4500", image: "/images/vt-b1.jpg", stars: 5 }
+          const products = [
+            { id: 1, title: "VT-LITE", details: "The VT LITE provides crucial visibility into the status of the vehicle and the behaviour of its driver.", features: "Driving Behavior Analysis, Remote Cut-off(Fuel/Power), Ignition Detection", price: "₹450", image: "/images/vt-lite.jpg", stars: 5,imei:"123456789012347" },
+            { id: 2, title: "VT-PRO", details: "Multifunctional Vehicle Tracker with solid performance and reasonable price, allowing you to constantly keep an eye on your fleet.", features: "GPS & LBS Positioning, IP66 Dust & Water Resistance, Emergency SOS Button", price: "₹4500", image: "/images/vt-pro.webp", stars: 5 ,imei:"123456789012347"},
+            { id: 3, title: "VT-140", details: "VT-140 would be the best option for government fleet, courier delivery services or car rental companies.", features: "AIS 140 Certified, Support GPS, IRNSS, GLONASS, Embedded e-SIM", price: "₹4500", image: "/images/vt-140.jpg", stars: 5 ,imei:"123456789012347" },
+            { id: 4, title: "VT-CHARGER", details: "The tracker is a discreet car GPS tracker cleverly integrated into a lighter style USB charger.", features: "Embedded Microphone, Panic Button, Over-speed Alert", price: "₹4500", image: "/images/vt-charger.jpg", stars: 5 ,imei:"123456789012347" },
+            { id: 5, title: "VT-OBD", details: "Plug & Play OBD Tracker.", features: "Compact Size, Unplug Alert, GPS & LBS Positioning.", price: "₹4500", image: "/images/vt-obd.jpg", stars: 5 ,imei:"123456789012347"},
+            { id: 6, title: "VT-MAGNETIC(VT)", details: "Long-standby magnetic Traker.", features: "GPS & WiFi & LBS Positioning, Remote Listen-in, IPX5 Water Resistance", price: "₹4500", image: "/images/vt-magnetic.webp", stars: 5 ,imei:"123456789012347"},
+            { id: 7, title: "VT-MAGNETIC LITE (VT 2)", details: "Long-standby magnetic Tracker.", features: "GPS & WiFi & LBS Positioning, 6000mAh Rechargeable Battery, Remote Listen-in", price: "₹4500", image: "/images/vt-magnetic-lite.jpg", stars: 5 ,imei:"123456789012347" },
+            { id: 8, title: "VT-MAGNETIC PRO (VT 3)", details: "Long-standby magnetic Tracker.", features: "GPS & WiFi & LBS Positioning, Temper Alert, Strong Magnetic Base", price: "₹4500", image: "/images/vt-magnetic-pro.jpg", stars: 5 ,imei:"123456789012347" },
+            { id: 9, title: "VT-MINI", details: "Mini Personal Tracker.", features: "Geo-fence, Compact Size, Two-way Communication", price: "₹4500", image: "/images/vt-mini.AVIF", stars: 5 ,imei:"123456789012347" },
+            { id: 10, title: "VT-4", details: "Intelligent Personal Tracker.", features: "Intelligent Positioning Modes, Extra-Long Standby, GPS & WiFi & LBS Positioning", price: "₹4500", image: "/images/vt-4.jpg", stars: 5 ,imei:"123456789012347" },
+            { id: 11, title: "VT-6", details: "Mini Personal Tracker.", features: "GPS & WiFi & LBS Positioning, Low Battery Alert, Panic Button", price: "₹4500", image: "/images/vt-6.jpg", stars: 5 ,imei:"123456789012347" },
+            { id: 12, title: "VT-B1", details: "Solar GPS Tracker for bicycles.", features: "Quick & Simple Unlocking, Solar Powered, Rugged and Durable Design", price: "₹4500", image: "/images/vt-b1.jpg", stars: 5 ,imei:"123456789012347"}
         ];
+
 
         function generateCards() {
             const container = document.getElementById('cardsContainer');
@@ -283,6 +284,7 @@
                         <div class="card-content">
                             <h2 class="card-title">${product.title}</h2>
                             <p class="card-details">${product.details}</p>
+                            <p class="card-details">${product.imei}</p>
                             <p class="card-features">Features: ${product.features}</p>
                             <p class="card-stars">${'★'.repeat(product.stars)}${'☆'.repeat(5 - product.stars)}</p>
                             <p class="card-price">${product.price}</p>
